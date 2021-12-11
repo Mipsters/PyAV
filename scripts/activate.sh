@@ -59,17 +59,17 @@ print("{}{}.{}".format(platform.python_implementation().lower(), *sys.version_in
     ')"
     export PYAV_VENV="$PYAV_ROOT/venvs/$PYAV_VENV_NAME"
 
-    if [[ ! -e "$PYAV_VENV/bin/python" ]]; then
+    if [[ ! -e "$PYAV_VENV/Scripts/python" ]]; then
         mkdir -p "$PYAV_VENV"
         virtualenv -p "$PYAV_PYTHON" "$PYAV_VENV"
-        "$PYAV_VENV/bin/pip" install --upgrade pip setuptools
+        "$PYAV_VENV/Scripts/pip" install --upgrade pip setuptools
     fi
 
-    if [[ -e "$PYAV_VENV/bin/activate" ]]; then
-        source "$PYAV_VENV/bin/activate"
+    if [[ -e "$PYAV_VENV/Scripts/activate" ]]; then
+        source "$PYAV_VENV/Scripts/activate"
     else
         # Not a virtualenv (perhaps a debug Python); lets manually "activate" it.
-        PATH="$PYAV_VENV/bin:$PATH"
+        PATH="$PYAV_VENV/Scripts:$PATH"
     fi
 
 fi

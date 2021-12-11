@@ -411,7 +411,8 @@ class CythonizeCommand(Command):
         for i, ext in enumerate(self.distribution.ext_modules):
             if any(s.endswith('.pyx') for s in ext.sources):
                 if is_msvc():
-                    ext.define_macros.append(('inline', '__inline'))
+                    if ('inline', '__inline') not in ext.define_macros:
+                        ext.define_macros.append(('inline', '__inline'))
                 new_ext = cythonize(
                     ext,
                     compiler_directives=dict(
